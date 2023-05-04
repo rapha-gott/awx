@@ -1,0 +1,10 @@
+- hosts: all
+  tasks:
+    - name: List /tmp directory
+      shell: ls /tmp
+      register: tmp_contents
+
+    - name: Save contents to file
+      copy:
+        content: "{{ tmp_contents.stdout }}"
+        dest: /tmp/file.txt
